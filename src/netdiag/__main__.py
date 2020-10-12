@@ -15,10 +15,13 @@ from netdiag import config
 
 settings = config.Settings()
 
+@click.group()
+def main():
+    pass
 
 @click.command()
 @click.option('--mrid', help='seed conducting equipment mrid to run downstream trace from')
-def main(mrid):
+def incorrect_phases(mrid):
     """Performs downstream trace from seed equipment to find equipments with no equipment container and then
     performs an upstream trace from there to find equipments with no common phases. The implementation has some limitations.
     When doing an upstream trace it only picks the first one out of the list. Also the upstream trace goes into an infinite loop
@@ -71,6 +74,7 @@ def main(mrid):
         print("-------------------------------------------------")
         return 0
 
+main.add_command(incorrect_phases)
 
 if __name__ == '__main__':
     sys.exit(main())
