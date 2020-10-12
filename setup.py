@@ -13,7 +13,6 @@ setup(
     package_dir={"": "src"},
     packages=find_namespace_packages(where="src"),
     install_requires=[
-        "zepben.cimbend",
         "click==7.1.2",
         "pydantic==1.6.1",
         "python-dotenv==0.13.0",
