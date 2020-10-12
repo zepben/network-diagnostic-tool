@@ -8,32 +8,32 @@ Python CLI Tool offers the following methods to find issues in the network data
     - Performs downstream trace from seed equipment to find equipments with no equipment container and then
     performs an upstream trace from there to find equipments with no common phases.
     
+    
+### Build
+
+    python setup.py sdist
+    
 #### Setup
 
 Requirements: Python 3.7+
 
 1. Install dependencies
 
-    ```pip install -r ./requirements.txt```
+        pip install netdiag-0.2.0.tar.gz
 
-2. Setup `.env` file: The project needs a `.env` file in the root level with the following content to pick up the config:  
+2. Setup `.env` file: The project needs a `.env` file where you run from with the following content to pick up the config:  
 
-    ```
-     ewb_host=<host>
-     ewb_port=<port>
-     ewb_scheme=<http/https>
-   ``` 
+        ewb_host=<host>
+        ewb_port=<port>
+        ewb_scheme=<http/https>
    
    Example config:
-   ```
-    ewb_host="localhost"
-    ewb_port=9000
-    ewb_scheme="http"
-   ```
+   
+        ewb_host="localhost"
+        ewb_port=9000
+        ewb_scheme="http"
    
 #### Run
 
-```
-python <method_name> <params>
-```    
+See ```netdiag --help ```
         

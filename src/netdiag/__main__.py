@@ -1,17 +1,24 @@
+#  Copyright 2020 Zeppelin Bend Pty Ltd
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 import http.client
 import json
+import sys
 from urllib.parse import quote
 
 import click
 
-import config
+from netdiag import config
 
 settings = config.Settings()
 
 
 @click.command()
 @click.option('--mrid', help='seed conducting equipment mrid to run downstream trace from')
-def incorrect_phases(mrid):
+def main(mrid):
     """Performs downstream trace from seed equipment to find equipments with no equipment container and then
     performs an upstream trace from there to find equipments with no common phases. The implementation has some limitations.
     When doing an upstream trace it only picks the first one out of the list. Also the upstream trace goes into an infinite loop
@@ -62,7 +69,8 @@ def incorrect_phases(mrid):
             next_asset = upstream_asset["id"]
 
         print("-------------------------------------------------")
+        return 0
 
 
 if __name__ == '__main__':
-    incorrect_phases()
+    sys.exit(incorrect_phases())
