@@ -72,7 +72,7 @@ def incorrect_phases(mrid):
             next_asset = upstream_asset["id"]
 
         print("-------------------------------------------------")
-        return 0
+    return 0
 
 main.add_command(incorrect_phases)
 
