@@ -73,4 +73,4 @@ def main(mrid):
 
 
 if __name__ == '__main__':
-    sys.exit(incorrect_phases())
+    sys.exit(main())
