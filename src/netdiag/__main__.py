@@ -63,9 +63,13 @@ def incorrect_phases(mrid):
                 break
 
             upstream_asset = upstream_response["assets"][0]
-            upstream_asset_phases = upstream_asset["connections"][0]["normalPhases"]
+            upstream_asset_phases = set(upstream_asset["connections"][0]["normalPhases"])
+            asset_phases = set(asset["phases"])
 
-            if len(list(set(upstream_asset_phases) & set(asset["phases"]))) == 0:
+            upstream_asset_phases.discard("N")
+            asset_phases.discard("N")
+
+            if len(list(upstream_asset_phases & asset_phases)) == 0:
                 print(f'Issue asset: {upstream_asset["id"]} {upstream_asset_phases}')
                 break
 
