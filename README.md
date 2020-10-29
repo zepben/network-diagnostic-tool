@@ -19,7 +19,7 @@ Requirements: Python 3.7+
 
 1. Install dependencies
 
-        pip install netdiag-0.2.0.tar.gz
+        pip install netdiag-<version>.tar.gz
 
 2. Setup `.env` file: The project needs a `.env` file where you run from with the following content to pick up the config:  
 

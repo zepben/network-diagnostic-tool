@@ -10,14 +10,15 @@ import sys
 from urllib.parse import quote
 
 import click
-
 from netdiag import config
 
 settings = config.Settings()
 
+
 @click.group()
 def main():
     pass
+
 
 @click.command()
 @click.option('--mrid', help='seed conducting equipment mrid to run downstream trace from')
@@ -58,8 +59,12 @@ def incorrect_phases(mrid):
                                f'/ewb/network/trace/api/v1/upstream/asset/{quote(next_asset, safe="")}?filter=assets(id,connections.normalPhases)')
             upstream_response = json.loads(connection.getresponse().read().decode('utf8'))
 
-            if ("errors" in upstream_response and len(upstream_response["errors"]) > 0):
+            if "errors" in upstream_response and len(upstream_response["errors"]) > 0:
                 print(upstream_response["errors"])
+                break
+
+            if len(upstream_response["assets"]) == 0:
+                print("Unable to identify issue as there are no upstream assets for {}".format(next_asset))
                 break
 
             upstream_asset = upstream_response["assets"][0]
@@ -77,6 +82,7 @@ def incorrect_phases(mrid):
 
         print("-------------------------------------------------")
     return 0
+
 
 main.add_command(incorrect_phases)
 
